@@ -1,5 +1,7 @@
 # Funções de alta ordem em haskell
 
+![Haskell](https://cdn-icons-png.flaticon.com/512/5968/5968214.png)
+
 Repositório no replit: https://replit.com/@Chico2805/TrabPessoal#Main.hs
 
 Funções de Alta Ordem são funções que possuem, como argumentos, outras funções ou retornam funções. Isso permite que elas possam ser aplicadas e combinadas de diversas formas, aumentando a flexibilidade e reusabilidade do código. Em Haskell, as funções de alta ordem são amplamente utilizadas, já que a linguagem é fortemente influenciada pela programação funcional. 
