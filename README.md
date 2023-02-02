@@ -1,5 +1,10 @@
 # Funções de alta ordem em haskell
 
+Funções de Alta Ordem são funções que possuem, como argumentos, outras funções ou retornam funções. Isso permite que elas possam ser aplicadas e combinadas de diversas formas, aumentando a flexibilidade e reusabilidade do código. Em Haskell, as funções de alta ordem são amplamente utilizadas, já que a linguagem é fortemente influenciada pela programação funcional. 
+
+  
+
+A seguir, serão apresentadas algumas funções de alta ordem comuns em Haskell não apresentadas em aula, explicando o que cada uma delas faz, suas definições(aproximadas) e como elas podem ser úteis na prática: 
 
 ## Funções
 
@@ -7,6 +12,7 @@
 
 span :: (a -> Bool) -> [a] -> ([a], [a]) - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna um par de listas, ([a], [a]), onde a primeira lista consiste em todos os elementos da lista original antes da primeira ocorrência de um elemento que não satisfazem a condição, e a segunda lista consiste nos elementos restantes.
 
+Definição:
 ```haskell
 span                    :: (a -> Bool) -> [a] -> ([a],[a])
 span _ xs@[ ]            =  (xs, xs)
@@ -24,6 +30,7 @@ span (< 5) [1, 2, 3, 4, 5, 6, 7]
 
 takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que satisfazem o predicado.
 
+Definição:
 ```haskell
 takeWhile               :: (a -> Bool) -> [a] -> [a]
 takeWhile _ []          =  []
@@ -41,6 +48,7 @@ takeWhile (< 5) [1, 2, 3, 4, 5, 6, 7]
 
 O que seria o predicado: takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que não satisfazem o predicado.
 
+Definição:
 ```haskell
 dropWhile               :: (a -> Bool) -> [a] -> [a]
 dropWhile _ []          =  []
@@ -58,6 +66,7 @@ dropWhile (< 5) [1, 2, 3, 4, 5, 6, 7]
 
 iterate :: (a -> a) -> a -> [a] - Essa função leva uma função (a -> a) e um valor do tipo a, e retorna uma lista infinita de aplicações repetidas da função ao valor.
 
+Definição:
 ```haskell
 iterate :: (a -> a) -> a -> [a]
 iterate f x =  x : iterate f (f x)
@@ -72,6 +81,7 @@ take 5 (iterate (*2) 1)
 
 scanr :: (a -> b -> b) -> b -> [a] -> [b] - Essa função leva uma função binária (a -> b -> b), um valor inicial do tipo b, e uma lista [a], e retorna uma lista de resultados intermediários obtidos pela dobragem da lista da direita com a função binária e o valor inicial.
 
+Definição:
 ```haskell
 scanr                   :: (a -> b -> b) -> b -> [a] -> [b]
 scanr _ q0 []           =  [q0]
@@ -88,6 +98,7 @@ scanr (+) 0 [1, 2, 3, 4]
 
 scanl :: (b -> a -> b) -> b -> [a] -> [b] - Essa função leva uma função binária (b -> a -> b), um valor inicial do tipo b, e uma lista [a], e retorna uma lista de resultados intermediários obtidos pela dobragem da lista da esquerda com a função binária e o valor inicial.
 
+Definição:
 ```haskell
 scanr1                  :: (a -> a -> a) -> [a] -> [a]
 scanr1 _ []             =  []
@@ -105,6 +116,7 @@ scanl (+) 0 [1, 2, 3, 4]
 
 unfoldr :: (b -> Maybe (a, b)) -> b -> [a] - Essa função recebe uma função (b -> Maybe (a, b)) e um elemento inicial b, e retorna uma lista com os resultados da aplicação sucessiva da função ao elemento inicial. A função deve retornar Nothing quando não houver mais elementos para serem adicionados à lista.
 
+Definição:
 ```haskell
 unfoldr f b0 = build (\c n ->
   let go b = case f b of
@@ -122,6 +134,7 @@ unfoldr (\b -> if b == 0 then Nothing else Just (b, b-1)) 10
 
 find :: Foldable t => (a -> Bool) -> t a -> Maybe a - Essa função recebe uma função condicional (a -> Bool) e um tipo Foldable t a, e retorna o primeiro elemento que satisfaz a condição ou Nothing caso não haja nenhum elemento que satisfaça.
 
+Definição:
 ```haskell
 find :: Foldable t => (a -> Bool) -> t a -> Maybe a
 find p = foldr (\x acc -> if p x then Just x else acc) Nothing
@@ -136,6 +149,7 @@ find even [1, 3, 5, 7, 8, 10]
 
 partition :: (a -> Bool) -> [a] -> ([a], [a]) - Essa função recebe uma função condicional (a -> Bool) e uma lista [a], e retorna uma tupla com duas listas: a primeira contendo todos os elementos da lista original que satisfazem a condição e a segunda contendo os elementos restantes.
 
+Definição:
 ```haskell
 partition :: (a -> Bool) -> [a] -> ([a], [a])
 partition p xs = (ts, fs)
@@ -152,6 +166,7 @@ partition even [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 flip :: (a -> b -> c) -> b -> a -> c - Essa função recebe uma função binária (a -> b -> c) e retorna uma nova função com os argumentos invertidos (b -> a -> c).
 
+Definição:
 ```haskell
 flip :: (a -> b -> c) -> b -> a -> c
 flip f x y = f y x
@@ -167,6 +182,7 @@ flip divide 2 4
 
 compose :: (b -> c) -> (a -> b) -> (a -> c) - Essa função recebe duas funções (b -> c) e (a -> b) e retorna uma nova função (a -> c) que é a composição das duas funções passadas como argumento.
 
+Definição:
 ```haskell
 (.)    :: (b -> c) -> (a -> b) -> a -> c
 (.) f g = \x -> f (g x)
@@ -183,6 +199,7 @@ let g x = x * 2
 
 fix :: (a -> a) -> a - Essa função recebe uma função (a ->a) e retorna uma função que retorna o resultado fixo da aplicação sucessiva da função ao seu próprio resultado.
 
+Definição:
 ```haskell
 fix :: (a -> a) -> a
 fix f = let x = f x in x
@@ -198,6 +215,7 @@ fix factorial 5
 
 on :: (b -> b -> c) -> (a -> b) -> a -> a -> c  - Essa função é usada para aplicar uma função a dois argumentos a dois valores de forma infixada. Em outras palavras, permite a aplicação de uma função entre dois valores usando a notação infixada.
 
+Definição:
 ```haskell
 on :: (b -> b -> c) -> (a -> b) -> a -> a -> c
 on f g x y = f (g x) (g y)
