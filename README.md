@@ -195,6 +195,22 @@ let max x y = if x > y then x else y
 on max 2 4
 -- Resultado: 4 
 ```
+
+## Funções Extras
+
+```haskell
+map _ []     = []
+map f (x:xs) = f x : map f xs
+```
+
+```haskell
+filter :: (a -> Bool) -> [a] -> [a]
+filter _pred []    = []
+filter pred (x:xs)
+  | pred x         = x : filter pred xs
+  | otherwise      = filter pred xs
+```
+
 # Referências
 [1] https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-List.html#v:nub
 
