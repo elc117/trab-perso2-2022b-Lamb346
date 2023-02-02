@@ -1,5 +1,7 @@
 # Funções de alta ordem em haskell
 
+Repositório no replit: https://replit.com/@Chico2805/TrabPessoal#Main.hs
+
 Funções de Alta Ordem são funções que possuem, como argumentos, outras funções ou retornam funções. Isso permite que elas possam ser aplicadas e combinadas de diversas formas, aumentando a flexibilidade e reusabilidade do código. Em Haskell, as funções de alta ordem são amplamente utilizadas, já que a linguagem é fortemente influenciada pela programação funcional. 
 
   
@@ -129,7 +131,7 @@ partition even [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ## flip: 
 
-flip :: (a -> b -> c) -> b -> a -> c - Essa função recebe uma função binária (a -> b -> c) e retorna uma nova função com os argumentos invertidos (b -> a -> c).
+flip :: (a -> b -> c) -> b -> a -> c - Essa função recebe uma função binária (a -> b -> c) e retorna o resultado função com os argumentos invertidos (b -> a -> c).
 
 Definição:
 ```haskell
