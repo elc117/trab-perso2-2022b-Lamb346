@@ -26,42 +26,6 @@ span (< 5) [1, 2, 3, 4, 5, 6, 7]
 -- Resultado: ([1, 2, 3, 4], [5, 6, 7])
 ```
 
-# takeWhile: 
-
-takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que satisfazem o predicado.
-
-Definição:
-```haskell
-takeWhile               :: (a -> Bool) -> [a] -> [a]
-takeWhile _ []          =  []
-takeWhile p (x:xs)
-            | p x       =  x : takeWhile p xs
-            | otherwise =  []
-```
-Exemplo de uso:
-```
-takeWhile (< 5) [1, 2, 3, 4, 5, 6, 7]
--- Resultado: [1, 2, 3, 4]
-```
-
-# dropWhile: 
-
-takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que não satisfazem o predicado.
-
-Definição:
-```haskell
-dropWhile               :: (a -> Bool) -> [a] -> [a]
-dropWhile _ []          =  []
-dropWhile p xs@(x:xs')
-            | p x       =  dropWhile p xs'
-            | otherwise =  xs
-```
-Exemplo de uso:
-```
-dropWhile (< 5) [1, 2, 3, 4, 5, 6, 7]
--- Resultado: [5, 6, 7]
-```
-
 # iterate: 
 
 iterate :: (a -> a) -> a -> [a] - Essa função leva uma função (a -> a) e um valor do tipo a, e retorna uma lista infinita de aplicações repetidas da função ao valor.
