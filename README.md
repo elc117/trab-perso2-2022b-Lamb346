@@ -118,6 +118,7 @@ unfoldr :: (b -> Maybe (a, b)) -> b -> [a] - Essa função recebe uma função (
 
 Definição:
 ```haskell
+unfoldr :: (b -> Maybe (a, b)) -> b -> [a]
 unfoldr f b0 = build (\c n ->
   let go b = case f b of
                Just (a, new_b) -> a `c` go new_b
@@ -226,9 +227,13 @@ let max x y = if x > y then x else y
 on max 2 4
 -- Resultado: 4 
 ```
-#Referências
+# Referências
 [1] https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-List.html#v:nub
+
 [2] https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Function.html
+
 [3] https://hackage.haskell.org/package/base-4.17.0.0/docs/src/GHC.Base.html
+
 [4] https://hackage.haskell.org/package/base-4.17.0.0/docs/src/Data.Function.html
-[5] https://chat.openai.com/chat (Duvidas em relação ao funcionamento da definição das funções)
+
+[5] https://chat.openai.com/chat (Dúvidas em relação ao funcionamento da definição das funções)
