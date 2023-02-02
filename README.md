@@ -8,7 +8,7 @@ A seguir, serão apresentadas algumas funções de alta ordem comuns em Haskell 
 
 ## Funções
 
-# span: 
+## span: 
 
 span :: (a -> Bool) -> [a] -> ([a], [a]) - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna um par de listas, ([a], [a]), onde a primeira lista consiste em todos os elementos da lista original antes da primeira ocorrência de um elemento que não satisfazem a condição, e a segunda lista consiste nos elementos restantes.
 
@@ -26,7 +26,7 @@ span (< 5) [1, 2, 3, 4, 5, 6, 7]
 -- Resultado: ([1, 2, 3, 4], [5, 6, 7])
 ```
 
-# iterate: 
+## iterate: 
 
 iterate :: (a -> a) -> a -> [a] - Essa função leva uma função (a -> a) e um valor do tipo a, e retorna uma lista infinita de aplicações repetidas da função ao valor.
 
@@ -41,7 +41,7 @@ take 5 (iterate (*2) 1)
 -- Resultado: [1, 2, 4, 8, 16]
 ```
 
-# scanr:
+## scanr:
 
 scanr :: (a -> b -> b) -> b -> [a] -> [b] - Essa função leva uma função binária (a -> b -> b), um valor inicial do tipo b, e uma lista [a], e retorna uma lista de resultados intermediários obtidos pela dobragem da lista da direita com a função binária e o valor inicial.
 
@@ -58,17 +58,17 @@ scanr (+) 0 [1, 2, 3, 4]
 -- Resultado: [10, 9, 7, 4, 0]
 ```
 
-# scanl: 
+## scanl: 
 
 scanl :: (b -> a -> b) -> b -> [a] -> [b] - Essa função leva uma função binária (b -> a -> b), um valor inicial do tipo b, e uma lista [a], e retorna uma lista de resultados intermediários obtidos pela dobragem da lista da esquerda com a função binária e o valor inicial.
 
 Definição:
 ```haskell
-scanr1                  :: (a -> a -> a) -> [a] -> [a]
-scanr1 _ []             =  []
-scanr1 _ [x]            =  [x]
-scanr1 f (x:xs)         =  f x q : qs
-                           where qs@(q:_) = scanr1 f xs
+-- scanl function
+scanl :: (b -> a -> b) -> b -> [a] -> [b]
+scanl _ q0 [] = [q0]
+scanl f q0 (x:xs) = q : scanl f (f q x) xs
+    where q = q0 `f` x
 ```
 Exemplo de uso:
 ```
@@ -76,7 +76,7 @@ scanl (+) 0 [1, 2, 3, 4]
 -- Resultado: [0, 1, 3, 6, 10]
 ```
 
-# unfoldr: 
+## unfoldr: 
 
 unfoldr :: (b -> Maybe (a, b)) -> b -> [a] - Essa função recebe uma função (b -> Maybe (a, b)) e um elemento inicial b, e retorna uma lista com os resultados da aplicação sucessiva da função ao elemento inicial. A função deve retornar Nothing quando não houver mais elementos para serem adicionados à lista.
 
@@ -95,7 +95,7 @@ unfoldr (\b -> if b == 0 then Nothing else Just (b, b-1)) 10
 -- Resultado: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 ```
 
-# find: 
+## find: 
 
 find :: Foldable t => (a -> Bool) -> t a -> Maybe a - Essa função recebe uma função condicional (a -> Bool) e um tipo Foldable t a, e retorna o primeiro elemento que satisfaz a condição ou Nothing caso não haja nenhum elemento que satisfaça.
 
@@ -110,7 +110,7 @@ find even [1, 3, 5, 7, 8, 10]
 -- Resultado: Just 8
 ```
 
-# partition: 
+## partition: 
 
 partition :: (a -> Bool) -> [a] -> ([a], [a]) - Essa função recebe uma função condicional (a -> Bool) e uma lista [a], e retorna uma tupla com duas listas: a primeira contendo todos os elementos da lista original que satisfazem a condição e a segunda contendo os elementos restantes.
 
@@ -127,7 +127,7 @@ partition even [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 -- Resultado: ([2, 4, 6, 8, 10], [1, 3, 5, 7, 9])
 ```
 
-# flip: 
+## flip: 
 
 flip :: (a -> b -> c) -> b -> a -> c - Essa função recebe uma função binária (a -> b -> c) e retorna uma nova função com os argumentos invertidos (b -> a -> c).
 
@@ -143,7 +143,7 @@ flip divide 2 4
 -- Resultado: 2
 ```
 
-# compose: 
+## compose: 
 
 compose :: (b -> c) -> (a -> b) -> (a -> c) - Essa função recebe duas funções (b -> c) e (a -> b) e retorna uma nova função (a -> c) que é a composição das duas funções passadas como argumento.
 
@@ -160,7 +160,7 @@ let g x = x * 2
 -- Resultado: 8
 ```
 
-# fix: 
+## fix: 
 
 fix :: (a -> a) -> a - Essa função recebe uma função (a ->a) e retorna uma função que retorna o resultado fixo da aplicação sucessiva da função ao seu próprio resultado.
 
@@ -176,7 +176,7 @@ fix factorial 5
 -- Resultado: 120
 ```
 
-# on: 
+## on: 
 
 on :: (b -> b -> c) -> (a -> b) -> a -> a -> c  - Essa função é usada para aplicar uma função a dois argumentos a dois valores de forma infixada. Em outras palavras, permite a aplicação de uma função entre dois valores usando a notação infixada.
 
