@@ -46,7 +46,7 @@ takeWhile (< 5) [1, 2, 3, 4, 5, 6, 7]
 
 # dropWhile: 
 
-O que seria o predicado: takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que não satisfazem o predicado.
+takeWhile :: (a -> Bool) -> [a] -> [a] - Essa função leva um predicado (a -> Bool) e uma lista [a], e retorna uma lista consistindo do prefixo mais longo de elementos da lista original que não satisfazem o predicado.
 
 Definição:
 ```haskell
