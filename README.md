@@ -226,3 +226,9 @@ let max x y = if x > y then x else y
 on max 2 4
 -- Resultado: 4 
 ```
+#Referências
+[1] https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-List.html#v:nub
+[2] https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Function.html
+[3] https://hackage.haskell.org/package/base-4.17.0.0/docs/src/GHC.Base.html
+[4] https://hackage.haskell.org/package/base-4.17.0.0/docs/src/Data.Function.html
+[5] https://chat.openai.com/chat (Duvidas em relação ao funcionamento da definição das funções)
